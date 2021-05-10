@@ -13,7 +13,7 @@ Tiny WebSocket middleware for Node.js based on [ws](https://github.com/websocket
 
 ## Features
 
-- Small size (**327B**)
+- Small size (**498B**)
 - Easy to use (only `req.ws` and nothing else)
 - Framework-agnostic (works with tinyhttp, express etc)
 - Written in TypeScript
