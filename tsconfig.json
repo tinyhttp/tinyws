@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "rootDir": "src",
+    "isolatedModules": true,
+    "outDir": "dist",
+    "preserveSymlinks": true
+  },
+  "include": ["src/**/*"]
+}
