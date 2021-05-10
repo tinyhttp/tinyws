@@ -1,23 +1,15 @@
 {
   "name": "tinyws",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "description": "Tiny WebSocket middleware for Node.js based on ws.",
-  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    },
-    "./": {
-      "import": "./dist/index.js"
-    },
-    "./package.json": {
-      "import": "./package.json"
-    }
+  "engines": {
+    "node": ">=12.4"
   },
+  "exports": "./dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
