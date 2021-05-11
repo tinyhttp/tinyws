@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" alt="Logo">
+  <img src="https://raw.githubusercontent.com/talentlessguy/tinyws/master/logo.svg" alt="Logo">
 </p>
 
 # tinyws
@@ -9,7 +9,7 @@
 ![Last commit][last-commit-badge-url]
 ![Minified size][size-badge-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
 
-Tiny WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws). Inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws).
+_**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws), inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws). Check out [chat example](examples/chat) to get familiar with tinyws.
 
 ## Features
 
@@ -17,6 +17,16 @@ Tiny WebSocket middleware for Node.js based on [ws](https://github.com/websocket
 - Easy to use (only `req.ws` and nothing else)
 - Framework-agnostic (works with tinyhttp, express etc)
 - Written in TypeScript
+
+## Why not [express-ws](https://github.com/HenningM/express-ws)?
+
+because express-ws is...
+
+- [Abandoned](https://github.com/HenningM/express-ws/issues/135) since 2018 💀
+- Doesn't come with types out of the box (have to install `@types/express-ws`)
+- Not compatible with tinyhttp and polka
+- Buggy as hell
+- Doesn't have tests
 
 ## Install
 
@@ -56,4 +66,4 @@ app.listen(3000)
 [cov-url]: https://codecov.io/gh/talentlessguy/tinyws
 [dl-badge-url]: https://img.shields.io/npm/dt/tinyws?style=flat-square
 [github-actions]: https://github.com/talentlessguy/tinyws/actions
-[gh-actions-img]: https://img.shields.io/github/workflow/status/talentlessguy/tinyhttp/CI?style=flat-square
+[gh-actions-img]: https://img.shields.io/github/workflow/status/talentlessguy/tinyws/CI?style=flat-square

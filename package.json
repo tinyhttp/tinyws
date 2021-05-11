@@ -1,7 +1,6 @@
 {
   "name": "tinyws",
-  "version": "0.0.1",
-  "type": "module",
+  "version": "0.0.2",
   "description": "Tiny WebSocket middleware for Node.js based on ws.",
   "files": [
     "dist"
@@ -15,7 +14,9 @@
     "build": "rollup -c",
     "test": "node --loader ts-node/esm --experimental-specifier-resolution=node node_modules/uvu/bin.js",
     "test:coverage": "c8 --include=src pnpm test",
-    "test:report": "c8 report --reporter=text-lcov > coverage.lcov"
+    "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
+    "lint": "eslint \"./**/*.ts\"",
+    "format": "prettier --write \"./**/*.ts\""
   },
   "repository": {
     "type": "git",
@@ -43,9 +44,16 @@
     "@types/express": "^4.17.11",
     "@types/node": "^15.0.2",
     "@types/ws": "^7.4.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "c8": "^7.7.2",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "express": "^4.17.1",
+    "husky": "^6.0.0",
     "polka": "^1.0.0-next.14",
+    "prettier": "latest",
     "rollup": "^2.47.0",
     "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-terser": "^7.0.2",
@@ -53,7 +61,9 @@
     "tslib": "^2.2.0",
     "typescript": "^4.2.4",
     "uvu": "^0.5.1",
-    "ws": ">=7"
+    "ws": ">=7",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1"
   },
   "peerDependencies": {
     "ws": ">=7"

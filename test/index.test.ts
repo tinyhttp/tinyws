@@ -8,10 +8,10 @@ import { Server } from 'http'
 
 const t = suite('tinyws')
 
-const s = (handler: (req: TinyWSRequest) => void) => {
+const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions) => {
   const app = new App<any, Request & TinyWSRequest>()
 
-  app.use(tinyws())
+  app.use(tinyws(opts))
   app.use('/ws', async (req, res, next) => {
     if (req.ws) {
       handler(req)
@@ -53,6 +53,61 @@ t('should resolve a `.ws` property', async () => {
   const ws = new WebSocket('ws://localhost:4444/ws')
 
   await once(ws, 'message')
+
+  server.close()
+  ws.close()
+})
+
+t('should pass ws options', async () => {
+  const app = s(
+    async (req) => {
+      const ws = await req.ws()
+
+      assert.instance(ws, WebSocket)
+
+      ws.on('error', (err) => {
+        assert.match(err.message, 'Max payload size exceeded')
+      })
+
+      return ws.send('hello there')
+    },
+    {
+      maxPayload: 2
+    }
+  )
+
+  const server = app.listen(4444)
+
+  const ws = new WebSocket('ws://localhost:4444/ws')
+
+  await once(ws, 'message')
+
+  ws.send('some lenghty message')
+
+  server.close()
+  ws.close()
+})
+
+t('should accept messages', async () => {
+  const app = s(async (req) => {
+    const ws = await req.ws()
+
+    assert.instance(ws, WebSocket)
+
+    return ws.on('message', (msg) => ws.send(`You sent: ${msg}`))
+  })
+
+  const server = app.listen(4444)
+
+  const ws = new WebSocket('ws://localhost:4444/ws')
+
+  await once(ws, 'open')
+
+  ws.send('42')
+
+  const data = await once(ws, 'message')
+
+  assert.equal(data.toString(), 'You sent: 42')
 
   server.close()
   ws.close()
