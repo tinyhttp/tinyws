@@ -4,14 +4,13 @@ import { App, Request, Handler } from '@tinyhttp/app'
 import { tinyws, TinyWSRequest } from '../src/index'
 import { once } from 'events'
 import WebSocket from 'ws'
-import { Server } from 'http'
 
 const t = suite('tinyws')
 
-const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions) => {
+const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions, inst?: WebSocket.Server) => {
   const app = new App<any, Request & TinyWSRequest>()
 
-  app.use(tinyws(opts))
+  app.use(tinyws(opts, inst))
   app.use('/ws', async (req, res, next) => {
     if (req.ws) {
       handler(req)
@@ -108,6 +107,35 @@ t('should accept messages', async () => {
   const data = await once(ws, 'message')
 
   assert.equal(data.toString(), 'You sent: 42')
+
+  server.close()
+  ws.close()
+})
+
+t('supports passing a server instance', async () => {
+  const wss = new WebSocket.Server({ noServer: true })
+
+  wss.on('connection', (socket) => {
+    assert.instance(ws, socket)
+  })
+
+  const app = s(
+    async (req) => {
+      const ws = await req.ws()
+
+      assert.instance(ws, WebSocket)
+
+      return ws.send('hello there')
+    },
+    {},
+    wss
+  )
+
+  const server = app.listen(4444)
+
+  const ws = new WebSocket('ws://localhost:4444/ws')
+
+  await once(ws, 'message')
 
   server.close()
   ws.close()

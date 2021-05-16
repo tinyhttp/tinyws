@@ -9,8 +9,8 @@ export interface TinyWSRequest extends http.IncomingMessage {
  * tinyws - adds `req.ws` method that resolves when websocket request appears
  * @param wsOptions
  */
-export const tinyws = (wsOptions?: ws.ServerOptions) => {
-  const wss = new ws.Server({ ...wsOptions, noServer: true })
+export const tinyws = (wsOptions?: ws.ServerOptions, wsServerInstance?: ws.Server) => {
+  const wss = wsServerInstance || new ws.Server({ ...wsOptions, noServer: true })
 
   return async (req: TinyWSRequest, _res, next: () => void | Promise<void>) => {
     const upgradeHeader = (req.headers.upgrade || '').split(',').map((s) => s.trim())
