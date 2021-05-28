@@ -19,7 +19,10 @@ export const tinyws = (wsOptions?: ws.ServerOptions, wsServerInstance?: ws.Serve
     if (upgradeHeader.indexOf('websocket') === 0) {
       req.ws = () =>
         new Promise((resolve) => {
-          wss.handleUpgrade(req, req.socket, Buffer.alloc(0), resolve)
+          wss.handleUpgrade(req, req.socket, Buffer.alloc(0), (ws) => {
+            wss.emit('connection', ws, req)
+            resolve(ws)
+          })
         })
     }
 
