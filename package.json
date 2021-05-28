@@ -1,6 +1,6 @@
 {
   "name": "tinyws",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Tiny WebSocket middleware for Node.js based on ws.",
   "files": [
     "dist"
