@@ -116,7 +116,7 @@ t('supports passing a server instance', async () => {
   const wss = new WebSocket.Server({ noServer: true })
 
   wss.on('connection', (socket) => {
-    assert.instance(ws, socket)
+    assert.instance(socket, WebSocket)
   })
 
   const app = s(
