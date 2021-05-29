@@ -9,7 +9,9 @@
 ![Last commit][last-commit-badge-url]
 ![Minified size][size-badge-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
 
-_**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws), inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws). Check out [chat example](examples/chat) to get familiar with tinyws.
+_**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws), inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws).
+
+Check the [chat example](examples/chat) out to get familiar with tinyws.
 
 ## Features
 
@@ -17,6 +19,7 @@ _**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.
 - Easy to use (only `req.ws` and nothing else)
 - Framework-agnostic (works with tinyhttp, express etc)
 - Written in TypeScript
+- Pure ESM
 
 ## Why not [express-ws](https://github.com/HenningM/express-ws)?
 
