@@ -3,7 +3,7 @@
 <p><sub>🚡 tiny WebSocket middleware for Node.js</sub></p>
 <br />
 
-[![Version][v-badge-url]][npm-url] ![Minified size][size-badge-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
+[![Version][v-badge-url]][npm-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
   
 </div>
 
@@ -60,7 +60,6 @@ app.listen(3000)
 
 [v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=for-the-badge&color=F55A5A&label=&logo=npm
 [npm-url]: https://www.npmjs.com/package/tinyws
-[size-badge-url]: https://img.shields.io/bundlephobia/min/tinyws.svg?style=for-the-badge&color=F55A5A
 [cov-badge-url]: https://img.shields.io/codecov/c/gh/talentlessguy/tinyws?style=for-the-badge&color=F55A5A
 [cov-url]: https://codecov.io/gh/talentlessguy/tinyws
 [dl-badge-url]: https://img.shields.io/npm/dt/tinyws?style=for-the-badge&color=F55A5A
