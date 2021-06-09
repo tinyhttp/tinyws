@@ -1,13 +1,11 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/talentlessguy/tinyws/master/logo.svg" alt="Logo">
-</p>
+<div align="center">
+<img src="https://raw.githubusercontent.com/talentlessguy/tinyws/master/logo.svg" alt="tinyws">
+<p><sub>🚡 tiny WebSocket middleware for Node.js</sub></p>
+<br />
 
-# tinyws
-
-![Vulnerabilities][vulns-badge-url]
-[![Version][v-badge-url]][npm-url]
-![Last commit][last-commit-badge-url]
-![Minified size][size-badge-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
+[![Version][v-badge-url]][npm-url] ![Minified size][size-badge-url] [![Downloads][dl-badge-url]][npm-url] [![GitHub Workflow Status][gh-actions-img]][github-actions] [![Codecov][cov-badge-url]][cov-url]
+  
+</div>
 
 _**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws), inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws).
 
@@ -60,13 +58,11 @@ app.use('/ws', async (req, res) => {
 app.listen(3000)
 ```
 
-[vulns-badge-url]: https://img.shields.io/snyk/vulnerabilities/npm/tinyws.svg?style=flat-square
-[v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=flat-square
+[v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=for-the-badge&color=F55A5A&label=&logo=npm
 [npm-url]: https://www.npmjs.com/package/tinyws
-[last-commit-badge-url]: https://img.shields.io/github/last-commit/talentlessguy/tinyws.svg?style=flat-square
-[size-badge-url]: https://img.shields.io/bundlephobia/min/tinyws.svg?style=flat-square
-[cov-badge-url]: https://img.shields.io/codecov/c/gh/talentlessguy/tinyws?style=flat-square
+[size-badge-url]: https://img.shields.io/bundlephobia/min/tinyws.svg?style=for-the-badge&color=F55A5A
+[cov-badge-url]: https://img.shields.io/codecov/c/gh/talentlessguy/tinyws?style=for-the-badge&color=F55A5A
 [cov-url]: https://codecov.io/gh/talentlessguy/tinyws
-[dl-badge-url]: https://img.shields.io/npm/dt/tinyws?style=flat-square
+[dl-badge-url]: https://img.shields.io/npm/dt/tinyws?style=for-the-badge&color=F55A5A
 [github-actions]: https://github.com/talentlessguy/tinyws/actions
-[gh-actions-img]: https://img.shields.io/github/workflow/status/talentlessguy/tinyws/CI?style=flat-square
+[gh-actions-img]: https://img.shields.io/github/workflow/status/talentlessguy/tinyws/CI?style=for-the-badge&color=F55A5A&label=&logo=github
