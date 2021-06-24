@@ -141,4 +141,8 @@ t('supports passing a server instance', async () => {
   ws.close()
 })
 
+t('returns a middleware function', () => {
+  assert.type(tinyws(), 'function')
+})
+
 t.run()
