@@ -1,6 +1,6 @@
 import { suite } from 'uvu'
 import * as assert from 'uvu/assert'
-import { App, Request, Handler } from '@tinyhttp/app'
+import { App, Request } from '@tinyhttp/app'
 import { tinyws, TinyWSRequest } from '../src/index'
 import { once } from 'events'
 import WebSocket from 'ws'
