@@ -32,7 +32,7 @@ because express-ws is...
 ## Install
 
 ```sh
-pnpm i ws tinyws
+npm i ws tinyws
 ```
 
 ## Example
@@ -49,6 +49,35 @@ app.use('/ws', async (req, res) => {
   if (req.ws) {
     const ws = await req.ws()
 
+    return ws.send('hello there')
+  } else {
+    res.send('Hello from HTTP!')
+  }
+})
+
+app.listen(3000)
+```
+
+
+```javascript
+const express = require('express')
+const { tinyws } = require('tinyws')
+
+const app = express()
+
+app.use(tinyws())
+
+app.use('/ws', async (req, res) => {
+  if (req.ws) {
+    const ws = await req.ws()
+    ws
+      .on('message', function (msg) {
+        console.debug('ws receive: %j', msg)
+        ws.send('Recceive :' + msg)
+      })
+      .on('close', () => {
+        console.debug('ws close')
+      })
     return ws.send('hello there')
   } else {
     res.send('Hello from HTTP!')
