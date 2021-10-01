@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert'
 import { App, Request } from '@tinyhttp/app'
 import { tinyws, TinyWSRequest } from '../src/index'
 import { once } from 'events'
-import WebSocket from 'ws'
+import WebSocket, { WebSocketServer } from 'ws'
 
 const t = suite('tinyws')
 
@@ -27,15 +27,15 @@ t('should respond with a message', async () => {
     return ws.send('hello there')
   })
 
-  const server = app.listen(4444)
+  const server = app.listen(4443)
 
-  const ws = new WebSocket('ws://localhost:4444/ws')
+  const ws = new WebSocket('ws://localhost:4443/ws')
 
-  const data = await once(ws, 'message')
+  const [data] = await once(ws, 'message')
 
   assert.equal(data.toString(), 'hello there')
-  server.close()
   ws.close()
+  server.close()
 })
 
 t('should resolve a `.ws` property', async () => {
@@ -51,10 +51,10 @@ t('should resolve a `.ws` property', async () => {
 
   const ws = new WebSocket('ws://localhost:4444/ws')
 
-  await once(ws, 'message')
-
-  server.close()
-  ws.close()
+  ws.on('message', () => {
+    server.close()
+    ws.close()
+  })
 })
 
 t('should pass ws options', async () => {
@@ -75,9 +75,9 @@ t('should pass ws options', async () => {
     }
   )
 
-  const server = app.listen(4444)
+  const server = app.listen(4445)
 
-  const ws = new WebSocket('ws://localhost:4444/ws')
+  const ws = new WebSocket('ws://localhost:4445/ws')
 
   await once(ws, 'message')
 
@@ -96,15 +96,15 @@ t('should accept messages', async () => {
     return ws.on('message', (msg) => ws.send(`You sent: ${msg}`))
   })
 
-  const server = app.listen(4444)
+  const server = app.listen(4446)
 
-  const ws = new WebSocket('ws://localhost:4444/ws')
+  const ws = new WebSocket('ws://localhost:4446/ws')
 
   await once(ws, 'open')
 
   ws.send('42')
 
-  const data = await once(ws, 'message')
+  const [data] = await once(ws, 'message')
 
   assert.equal(data.toString(), 'You sent: 42')
 
@@ -113,7 +113,7 @@ t('should accept messages', async () => {
 })
 
 t('supports passing a server instance', async () => {
-  const wss = new WebSocket.Server({ noServer: true })
+  const wss = new WebSocketServer({ noServer: true })
 
   wss.on('connection', (socket) => {
     assert.instance(socket, WebSocket)
@@ -131,9 +131,9 @@ t('supports passing a server instance', async () => {
     wss
   )
 
-  const server = app.listen(4444)
+  const server = app.listen(4447)
 
-  const ws = new WebSocket('ws://localhost:4444/ws')
+  const ws = new WebSocket('ws://localhost:4447/ws')
 
   await once(ws, 'message')
 

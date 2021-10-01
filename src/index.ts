@@ -1,5 +1,6 @@
-import ws, { Server } from 'ws'
+import ws, { WebSocketServer as Server } from 'ws'
 import http from 'http'
+
 
 export interface TinyWSRequest extends http.IncomingMessage {
   ws: () => Promise<ws>
