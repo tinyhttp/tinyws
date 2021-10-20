@@ -35,7 +35,7 @@ because express-ws is...
 pnpm i ws tinyws
 ```
 
-## Example
+## Example (tinyhttp)
 
 ```ts
 import { App, Request } from '@tinyhttp/app'
@@ -56,6 +56,44 @@ app.use('/ws', async (req, res) => {
 })
 
 app.listen(3000)
+```
+
+## Example (express)
+
+Make sure you have `@types/ws` installed. Create `express.d.ts` and place it anywhere in your source directory:
+
+```ts
+declare namespace Express {
+    interface Request {
+        ws: () => Promise<import('ws')>;
+    }
+}
+```
+
+Now you may use websocket in your express app:
+
+```ts
+import express from 'express';
+import { tinyws } from 'tinyws';
+import { createServer } from 'http';
+
+const app = express();
+
+// app.use(tinyws()); // if you prefer to accept ws connections in multiple routes
+
+app.get('/ws', tinyws(), async (req, resp) => {
+    if (req.ws) {
+        const ws = await req.ws();
+        ws.send('Hello from websocket!');
+        ws.on('message', (data) => {
+            ws.send('echo: ' + data);
+        });
+    } else {
+        resp.send('Hello from HTTP!');
+    }
+});
+
+createServer(app).listen(2333);
 ```
 
 [v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=for-the-badge&color=F55A5A&label=&logo=npm
