@@ -93,7 +93,7 @@ app.get('/ws', tinyws(), async (req, resp) => {
     }
 });
 
-createServer(app).listen(2333);
+app.listen(3000);
 ```
 
 [v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=for-the-badge&color=F55A5A&label=&logo=npm
