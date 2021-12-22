@@ -35,8 +35,9 @@ because express-ws is...
 pnpm i ws tinyws
 ```
 
-## Example (tinyhttp)
+## Example
 
+### tinyhttp
 ```ts
 import { App, Request } from '@tinyhttp/app'
 import { tinyws, TinyWSRequest } from 'tinyws'
@@ -58,8 +59,7 @@ app.use('/ws', async (req, res) => {
 app.listen(3000)
 ```
 
-## Example (express)
-
+### express
 Make sure you have `@types/ws` installed. Create `express.d.ts` and place it anywhere in your source directory:
 
 ```ts
