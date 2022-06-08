@@ -11,7 +11,7 @@ esno server.ts
 now open a few terminal windows and send messages.
 
 ```sh
-$ wscat -c http://localhost:3000/chat
+$ wscat -c ws://localhost:3000/chat
 # > hello
 # < hello
 # < someone else sent this
