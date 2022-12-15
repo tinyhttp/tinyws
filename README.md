@@ -64,4 +64,4 @@ app.listen(3000)
 [cov-url]: https://coveralls.io/github/tinyhttp/tinyws
 [dl-badge-url]: https://img.shields.io/npm/dt/tinyws?style=for-the-badge&color=F55A5A
 [github-actions]: https://github.com/tinyhttp/tinyws/actions
-[gh-actions-img]: https://img.shields.io/github/workflow/status/tinyhttp/tinyws/CI?style=for-the-badge&color=F55A5A&label=&logo=github
+[gh-actions-img]: https://img.shields.io/github/actions/workflow/status/tinyhttp/tinyws/main.yml?branch=master&style=for-the-badge&color=F55A5A&label=&logo=github
