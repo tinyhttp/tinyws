@@ -12,7 +12,7 @@ const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions
 
   app.use(tinyws(opts, inst))
   app.use('/ws', async (req, res, next) => {
-    if (req.ws) {
+    if (typeof req.ws !== 'undefined') {
       handler(req)
     }
   })
@@ -22,12 +22,12 @@ const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions
 
 t('should respond with a message', async () => {
   const app = s(async (req) => {
-    const ws = await req.ws()
+    const ws = await req?.ws()
 
     return ws.send('hello there')
   })
 
-  const server = app.listen(4443)
+  const server = app.listen(4443, undefined, '::1')
 
   const ws = new WebSocket('ws://localhost:4443/ws')
 
@@ -47,7 +47,7 @@ t('should resolve a `.ws` property', async () => {
     return ws.send('hello there')
   })
 
-  const server = app.listen(4444)
+  const server = app.listen(4444, undefined, '::1')
 
   const ws = new WebSocket('ws://localhost:4444/ws')
 
@@ -75,7 +75,7 @@ t('should pass ws options', async () => {
     }
   )
 
-  const server = app.listen(4445)
+  const server = app.listen(4445, undefined, 'localhost')
 
   const ws = new WebSocket('ws://localhost:4445/ws')
 
@@ -96,7 +96,7 @@ t('should accept messages', async () => {
     return ws.on('message', (msg) => ws.send(`You sent: ${msg}`))
   })
 
-  const server = app.listen(4446)
+  const server = app.listen(4446, undefined, 'localhost')
 
   const ws = new WebSocket('ws://localhost:4446/ws')
 
@@ -131,7 +131,7 @@ t('supports passing a server instance', async () => {
     wss
   )
 
-  const server = app.listen(4447)
+  const server = app.listen(4447, undefined, 'localhost')
 
   const ws = new WebSocket('ws://localhost:4447/ws')
 
