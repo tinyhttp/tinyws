@@ -58,6 +58,8 @@ app.use('/ws', async (req, res) => {
 app.listen(3000)
 ```
 
+See [examples](examples) for express and polka integration.
+
 [v-badge-url]: https://img.shields.io/npm/v/tinyws.svg?style=for-the-badge&color=F55A5A&label=&logo=npm
 [npm-url]: https://www.npmjs.com/package/tinyws
 [cov-badge-url]: https://img.shields.io/coveralls/github/tinyhttp/tinyws?style=for-the-badge&color=F55A5A
