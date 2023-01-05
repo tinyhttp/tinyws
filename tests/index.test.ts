@@ -27,7 +27,7 @@ t('should respond with a message', async () => {
     return ws.send('hello there')
   })
 
-  const server = app.listen(4443, undefined, '::1')
+  const server = app.listen(4443, undefined, 'localhost')
 
   const ws = new WebSocket('ws://localhost:4443/ws')
 
@@ -47,7 +47,7 @@ t('should resolve a `.ws` property', async () => {
     return ws.send('hello there')
   })
 
-  const server = app.listen(4444, undefined, '::1')
+  const server = app.listen(4444, undefined, 'localhost')
 
   const ws = new WebSocket('ws://localhost:4444/ws')
 
