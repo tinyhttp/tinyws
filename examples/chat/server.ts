@@ -1,12 +1,12 @@
 import { App, Request } from '@tinyhttp/app'
-
+import { WebSocket } from 'ws'
 import { tinyws, TinyWSRequest } from '../../src/index'
 
 const app = new App<any, Request & TinyWSRequest>()
 
 app.use(tinyws())
 
-let connections = []
+let connections: WebSocket[] = []
 
 app.use('/chat', async (req, res) => {
   if (req.ws) {
