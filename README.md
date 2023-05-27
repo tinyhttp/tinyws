@@ -7,6 +7,10 @@
 
 </div>
 
+> I'm building [Flash](https://flash-dev.vercel.app) - a service to deploy websites and apps on the new decentralized stack.
+>
+> If you'd like to try or collab, [dm](https://t.me/v_1rtl) or [email](mailto:yo@v1rtl.site)
+
 _**tinyws**_ is a WebSocket middleware for Node.js based on [ws](https://github.com/websockets/ws), inspired by [koa-easy-ws](https://github.com/b3nsn0w/koa-easy-ws).
 
 Check the [chat example](examples/chat) out to get familiar with tinyws.
