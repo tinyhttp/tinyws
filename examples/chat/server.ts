@@ -8,7 +8,7 @@ app.use(tinyws())
 
 let connections: WebSocket[] = []
 
-app.use('/chat', async (req, res) => {
+app.use('/chat', async (req) => {
   if (req.ws) {
     const ws = await req.ws()
 

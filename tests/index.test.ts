@@ -11,7 +11,7 @@ const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions
   const app = new App<any, Request & TinyWSRequest>()
 
   app.use(tinyws(opts, inst))
-  app.use('/ws', async (req, res, next) => {
+  app.use('/ws', async (req) => {
     if (typeof req.ws !== 'undefined') {
       handler(req)
     }
