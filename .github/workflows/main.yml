@@ -20,17 +20,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "14"
-      - name: install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-      - run: pnpm install
-      - run: pnpm test:coverage
-      - run: pnpm test:report
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+      - run: bun i
+      - run: bun test --coverage
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
