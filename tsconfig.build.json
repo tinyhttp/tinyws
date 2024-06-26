@@ -4,9 +4,10 @@
     "module": "esnext",
     "moduleResolution": "Node",
     "declaration": true,
+    "rootDir": "src",
     "isolatedModules": true,
     "outDir": "dist",
     "preserveSymlinks": true
   },
-  "include": ["src/**/*", "bun-types", "tests/**/*", "examples"]
+  "include": ["src/**/*"]
 }

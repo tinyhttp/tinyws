@@ -1,8 +1,8 @@
-import { App, Request } from '@tinyhttp/app'
-import { WebSocket } from 'ws'
-import { tinyws, TinyWSRequest } from '../../src/index'
+import { App, type Request } from '@tinyhttp/app'
+import type { WebSocket } from 'ws'
+import { type TinyWSRequest, tinyws } from '../../src/index'
 
-const app = new App<any, Request & TinyWSRequest>()
+const app = new App<Request & TinyWSRequest>()
 
 app.use(tinyws())
 
@@ -18,10 +18,11 @@ app.use('/chat', async (req) => {
       console.log('Received message:', message)
 
       // broadcast
+      // biome-ignore lint/complexity/noForEach: <explanation>
       connections.forEach((socket) => socket.send(message))
     })
 
-    ws.on('close', () => (connections = connections.filter((conn) => (conn === ws ? false : true))))
+    ws.on('close', () => (connections = connections.filter((conn) => conn !== ws)))
   }
 })
 

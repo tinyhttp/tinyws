@@ -1,0 +1,11 @@
+{
+  "npm.packageManager": "pnpm",
+  "editor.formatOnSave": true,
+  "biome.enabled": true,
+  "eslint.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

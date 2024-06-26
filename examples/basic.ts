@@ -1,8 +1,8 @@
-import { App, Request } from '@tinyhttp/app'
+import { App, type Request } from '@tinyhttp/app'
 
-import { tinyws, TinyWSRequest } from '../src/index'
+import { type TinyWSRequest, tinyws } from '../src/index'
 
-const app = new App<any, Request & TinyWSRequest>()
+const app = new App<Request & TinyWSRequest>()
 
 app.use(tinyws())
 
@@ -11,9 +11,8 @@ app.use('/hmr', async (req, res) => {
     const ws = await req.ws()
 
     return ws.send('hello there')
-  } else {
-    res.send('Hello from HTTP!')
   }
+  res.send('Hello from HTTP!')
 })
 
 app.listen(3000)

@@ -1,14 +1,12 @@
-import { suite } from 'uvu'
-import * as assert from 'uvu/assert'
-import { App, Request } from '@tinyhttp/app'
-import { tinyws, TinyWSRequest } from '../src/index'
-import { once } from 'events'
-import WebSocket, { WebSocketServer } from 'ws'
+import { it } from 'bun:test'
+import * as assert from 'node:assert'
+import { once } from 'node:events'
+import { App, type Request } from '@tinyhttp/app'
+import { type Server, type ServerOptions, WebSocketServer } from 'ws'
+import { type TinyWSRequest, tinyws } from '../src/index'
 
-const t = suite('tinyws')
-
-const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions, inst?: WebSocket.Server) => {
-  const app = new App<any, Request & TinyWSRequest>()
+const s = (handler: (req: TinyWSRequest) => void, opts?: ServerOptions, inst?: Server) => {
+  const app = new App<Request & TinyWSRequest>()
 
   app.use(tinyws(opts, inst))
   app.use('/ws', async (req) => {
@@ -20,7 +18,7 @@ const s = (handler: (req: TinyWSRequest) => void, opts?: WebSocket.ServerOptions
   return app
 }
 
-t('should respond with a message', async () => {
+it('should respond with a message', async () => {
   const app = s(async (req) => {
     const ws = await req?.ws()
 
@@ -38,11 +36,11 @@ t('should respond with a message', async () => {
   server.close()
 })
 
-t('should resolve a `.ws` property', async () => {
+it('should resolve a `.ws` property', async () => {
   const app = s(async (req) => {
     const ws = await req.ws()
 
-    assert.instance(ws, WebSocket)
+    assert.ok(ws instanceof WebSocket)
 
     return ws.send('hello there')
   })
@@ -57,15 +55,15 @@ t('should resolve a `.ws` property', async () => {
   })
 })
 
-t('should pass ws options', async () => {
+it('should pass ws options', async () => {
   const app = s(
     async (req) => {
       const ws = await req.ws()
 
-      assert.instance(ws, WebSocket)
+      assert.ok(ws instanceof WebSocket)
 
       ws.on('error', (err) => {
-        assert.match(err.message, 'Max payload size exceeded')
+        assert.match(err.message, /Max payload size exceeded/)
       })
 
       return ws.send('hello there')
@@ -87,11 +85,11 @@ t('should pass ws options', async () => {
   ws.close()
 })
 
-t('should accept messages', async () => {
+it('should accept messages', async () => {
   const app = s(async (req) => {
     const ws = await req.ws()
 
-    assert.instance(ws, WebSocket)
+    assert.ok(ws instanceof WebSocket)
 
     return ws.on('message', (msg) => ws.send(`You sent: ${msg}`))
   })
@@ -112,18 +110,18 @@ t('should accept messages', async () => {
   ws.close()
 })
 
-t('supports passing a server instance', async () => {
+it('supports passing a server instance', async () => {
   const wss = new WebSocketServer({ noServer: true })
 
   wss.on('connection', (socket) => {
-    assert.instance(socket, WebSocket)
+    assert.ok(socket instanceof WebSocket)
   })
 
   const app = s(
     async (req) => {
       const ws = await req.ws()
 
-      assert.instance(ws, WebSocket)
+      assert.ok(ws instanceof WebSocket)
 
       return ws.send('hello there')
     },
@@ -141,8 +139,6 @@ t('supports passing a server instance', async () => {
   ws.close()
 })
 
-t('returns a middleware function', () => {
-  assert.type(tinyws(), 'function')
+it('returns a middleware function', () => {
+  assert.ok(typeof tinyws() === 'function')
 })
-
-t.run()

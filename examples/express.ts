@@ -1,13 +1,11 @@
-import express from 'express'
-import ws from 'ws'
+import * as express from 'express'
+import type { WebSocket } from 'ws'
 import { tinyws } from '../src/index'
-
-export {}
 
 declare global {
   namespace Express {
     export interface Request {
-      ws: () => Promise<ws>
+      ws: () => Promise<WebSocket>
     }
   }
 }
@@ -19,9 +17,8 @@ app.use('/hmr', tinyws(), async (req, res) => {
     const ws = await req.ws()
 
     return ws.send('hello from express@4')
-  } else {
-    res.send('Hello from HTTP!')
   }
+  res.send('Hello from HTTP!')
 })
 
 app.listen(3000)
