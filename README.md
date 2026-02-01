@@ -41,9 +41,7 @@ pnpm i ws tinyws
 import { App, Request } from '@tinyhttp/app'
 import { tinyws, TinyWSRequest } from 'tinyws'
 
-const app = new App<any, Request & TinyWSRequest>()
-
-app.use(tinyws())
+const app = new App<Request & TinyWSRequest>()
 
 app.use('/ws', async (req, res) => {
   if (req.ws) {
@@ -55,7 +53,20 @@ app.use('/ws', async (req, res) => {
   }
 })
 
-app.listen(3000)
+const server = app.listen(3000)
+tinyws(app, server)
+```
+
+### Restricting WebSocket to specific paths
+
+You can restrict WebSocket handling to specific paths using the `paths` option:
+
+```ts
+// Single path
+tinyws(app, server, { paths: '/ws' })
+
+// Multiple paths
+tinyws(app, server, { paths: ['/ws', '/socket'] })
 ```
 
 See [examples](examples) for express and polka integration.

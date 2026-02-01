@@ -12,7 +12,7 @@ declare global {
 
 const app = express()
 
-app.use('/hmr', tinyws(), async (req, res) => {
+app.use('/hmr', async (req, res) => {
   if (req.ws) {
     const ws = await req.ws()
 
@@ -21,4 +21,5 @@ app.use('/hmr', tinyws(), async (req, res) => {
   res.send('Hello from HTTP!')
 })
 
-app.listen(3000)
+const server = app.listen(3000)
+tinyws({ handler: app }, server)
