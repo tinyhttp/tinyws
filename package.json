@@ -13,8 +13,7 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "bun test",
     "test:coverage": "bun test --coverage",
-    "lint": "biome check .",
-    "format": "biome format --write .",
+    "lint": "biome check --write .",
     "prepublishOnly": "bun test && bun run lint && bun run build"
   },
   "repository": {
@@ -46,6 +45,5 @@
   },
   "peerDependencies": {
     "ws": ">=8"
-  },
-  "packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f"
+  }
 }
