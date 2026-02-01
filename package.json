@@ -2,9 +2,7 @@
   "name": "tinyws",
   "version": "0.1.0",
   "description": "Tiny WebSocket middleware for Node.js based on ws.",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "engines": {
     "node": ">=12.4"
   },
@@ -13,27 +11,17 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "test": "uvu -r tsm tests",
-    "test:coverage": "c8 --include=src pnpm test",
-    "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
-    "lint": "eslint \"./**/*.ts\"",
-    "format": "prettier --write \"./**/*.ts\"",
-    "prepublishOnly": "npm run test && npm run lint && npm run build"
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "prepublishOnly": "bun test && bun run lint && bun run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/talentlessguy/tinyws.git"
   },
-  "keywords": [
-    "ws",
-    "express",
-    "tinyhttp",
-    "websocket",
-    "middleware",
-    "polka",
-    "http",
-    "server"
-  ],
+  "keywords": ["ws", "express", "tinyhttp", "websocket", "middleware", "polka", "http", "server"],
   "author": "v1rtl (https://v1rtl.site)",
   "license": "MIT",
   "bugs": {
