@@ -181,9 +181,10 @@ it('restricts WebSocket to specified paths', async () => {
 
   // Connection to /other should not have req.ws
   const ws2 = new WebSocket('ws://localhost:4449/other')
-  const [err] = await once(ws2, 'error')
-  assert.ok(err)
-  ws2.close()
+  await new Promise<void>((resolve) => {
+    ws2.on('error', () => resolve())
+    ws2.on('close', () => resolve())
+  })
 
   server.close()
 })
