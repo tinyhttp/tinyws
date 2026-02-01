@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/talentlessguy/tinyws.git"
+    "url": "git+https://github.com/tinyhttp/tinyws.git"
   },
   "keywords": ["ws", "express", "tinyhttp", "websocket", "middleware", "polka", "http", "server"],
   "author": "v1rtl (https://v1rtl.site)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/talentlessguy/tinyws/issues"
+    "url": "https://github.com/tinyhttp/tinyws/issues"
   },
-  "homepage": "https://github.com/talentlessguy/tinyws#readme",
+  "homepage": "https://github.com/tinyhttp/tinyws#readme",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^17.8.1",
