@@ -14,10 +14,10 @@ jobs:
           bun-version: latest
       - run: bun i
       - run: bun run lint
-      - run: bun test --coverage
+      - run: bun test --coverage --coverage-reporter=lcov
       - name: Coveralls
         if: github.ref == 'refs/heads/master'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./coverage.lcov
+          path-to-lcov: ./coverage/lcov.info
